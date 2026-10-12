@@ -111,6 +111,44 @@ Results come from a single run with one random split, so they carry the caveat d
 
 ![Predicted vs true MOS on the test set](assets/scatter_test.png)
 
+## Week 2: Option B (Loss & Training Track)
+
+Experiments in `ldct_iqac_week2_optionB.ipynb` (Google Colab, Tesla T4). The notebook imports the modules of this repository and only changes the loss function or the learning rate scheduler. Model, data split (800/100/100), Adam lr 1e-4, batch size 16, 50 epochs and seed 42 are the same as in Week 1. For each run the checkpoint with the lowest validation loss is evaluated once on the test set (N = 100).
+
+### B1: Loss functions
+
+| Loss | Best epoch | MAE | RMSE | PLCC | SROCC | KROCC |
+| ---- | ---------- | --- | ---- | ---- | ----- | ----- |
+| MSE | 19 | 0.1932 | 0.2463 | 0.9724 | 0.9681 | 0.8688 |
+| L1 (MAE) | 48 | 0.1984 | 0.2548 | 0.9729 | 0.9690 | 0.8750 |
+| Huber (SmoothL1, beta = 1.0) | 43 | 0.1887 | 0.2328 | 0.9756 | 0.9703 | 0.8738 |
+| Pairwise ranking (margin 0.1) | 14 | 2.1487 | 2.1695 | 0.9670 | 0.9714 | 0.8713 |
+| Combined (0.5 MSE + 0.5 ranking) | 19 | 0.1916 | 0.2428 | 0.9728 | 0.9684 | 0.8700 |
+
+The ranking loss only constrains the order of the predictions, not their scale, so its MAE and RMSE are large by design.
+
+![B1 validation SROCC](assets/b1_val_srocc.png)
+
+### B2: Learning rate schedulers (MSE loss)
+
+| Scheduler | Best epoch | MAE | RMSE | PLCC | SROCC | KROCC |
+| --------- | ---------- | --- | ---- | ---- | ----- | ----- |
+| Constant lr (B1 MSE run) | 19 | 0.1932 | 0.2463 | 0.9724 | 0.9681 | 0.8688 |
+| StepLR (step_size=10, gamma=0.1) | 47 | 0.1876 | 0.2352 | 0.9749 | 0.9709 | 0.8754 |
+| CosineAnnealingLR (T_max=50, eta_min=1e-6) | 24 | 0.1890 | 0.2372 | 0.9742 | 0.9682 | 0.8700 |
+| OneCycleLR (max_lr=1e-3, stepped per batch) | 39 | 0.1867 | 0.2363 | 0.9751 | 0.9713 | 0.8779 |
+
+![B2 learning rate curves](assets/b2_lr_curves.png)
+
+![B2 validation loss](assets/b2_val_loss.png)
+
+### Notes
+
+- The differences between the runs are small (SROCC within about 0.003 to 0.004) and of the same size as the epoch-to-epoch variation of the validation SROCC, so no method is declared the best.
+- The MSE run in the notebook does not reproduce the Week 1 numbers exactly (epoch 19 and SROCC 0.9681 here, epoch 35 and SROCC 0.9711 in Week 1). The cause was not identified. The notebook run is used as the baseline for all Week 2 comparisons.
+- Single run, one seed, one random split with no patient IDs, so there is no variance estimate. B3 (5-fold cross-validation) was not run.
+- To reproduce, run the cells of the notebook in order on a GPU runtime. Result tables are in `assets/b1_table.csv` and `assets/b2_table.csv`.
+
 ## Project Structure
 
 ```
@@ -127,6 +165,7 @@ Results come from a single run with one random split, so they carry the caveat d
 ├── test.py
 ├── plot_curves.py
 ├── utils.py
+├── ldct_iqac_week2_optionB.ipynb
 ├── assets/
 └── tests/
 ```
