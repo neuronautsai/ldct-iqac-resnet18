@@ -127,7 +127,7 @@ Experiments in `ldct_iqac_week2_optionB.ipynb` (Google Colab, Tesla T4). The not
 
 The ranking loss only constrains the order of the predictions, not their scale, so its MAE and RMSE are large by design.
 
-![B1 validation SROCC](assets/b1_val_srocc.png)
+![B1 validation SROCC](<assets/b1_val_srocc (1).png>)
 
 ### B2: Learning rate schedulers (MSE loss)
 
@@ -138,9 +138,9 @@ The ranking loss only constrains the order of the predictions, not their scale, 
 | CosineAnnealingLR (T_max=50, eta_min=1e-6) | 24 | 0.1890 | 0.2372 | 0.9742 | 0.9682 | 0.8700 |
 | OneCycleLR (max_lr=1e-3, stepped per batch) | 39 | 0.1867 | 0.2363 | 0.9751 | 0.9713 | 0.8779 |
 
-![B2 learning rate curves](assets/b2_lr_curves.png)
+![B2 learning rate curves](<assets/b2_lr_curves (1).png>)
 
-![B2 validation loss](assets/b2_val_loss.png)
+![B2 validation loss](<assets/b2_val_loss (1).png>)
 
 ### Notes
 
