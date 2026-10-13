@@ -142,12 +142,27 @@ The ranking loss only constrains the order of the predictions, not their scale, 
 
 ![B2 validation loss](<assets/b2_val_loss (1).png>)
 
+### B3: 5-fold cross-validation (MSE loss, constant lr 1e-4)
+
+`KFold(n_splits=5, shuffle=True, random_state=42)` over all 1000 images. Each fold trains on 800 and evaluates on the other 200 images, there is no separate test set. The model after the last epoch (50) is evaluated, so no checkpoint is selected on the evaluation fold. Seed 42 in every fold. Code: `ldct_iqac_week2_optionB3_cv.ipynb`, fold logs: `assets/b3_fold_log.txt`, tables: `assets/b3_folds.csv` and `assets/b3_summary.csv`. The two CSV files were computed from the per-fold metrics in the fold log (4 decimals, same arithmetic as the last notebook cell), the notebook is stored without outputs.
+
+| Fold | MAE | RMSE | PLCC | SROCC | KROCC |
+| ---- | --- | ---- | ---- | ----- | ----- |
+| 0 | 0.1985 | 0.2480 | 0.9752 | 0.9750 | 0.8825 |
+| 1 | 0.1698 | 0.2191 | 0.9810 | 0.9813 | 0.8985 |
+| 2 | 0.1837 | 0.2375 | 0.9747 | 0.9690 | 0.8738 |
+| 3 | 0.1959 | 0.2513 | 0.9754 | 0.9752 | 0.8823 |
+| 4 | 0.1705 | 0.2257 | 0.9778 | 0.9751 | 0.8895 |
+| **Mean ± std** | 0.1837 ± 0.0135 | 0.2363 ± 0.0139 | 0.9768 ± 0.0026 | 0.9751 ± 0.0043 | 0.8853 ± 0.0092 |
+
+Std is the sample standard deviation over the 5 folds (ddof = 1). The protocol differs from B1 and B2 (200 evaluation images per fold, last epoch instead of best checkpoint, no test set), so the means are not compared directly with the B1 and B2 tables. The fold-to-fold std of SROCC (0.0043) is larger than the differences between the losses (B1) and between the schedulers (B2).
+
 ### Notes
 
 - The differences between the runs are small (SROCC within about 0.003 to 0.004) and of the same size as the epoch-to-epoch variation of the validation SROCC, so no method is declared the best.
 - The MSE run in the notebook does not reproduce the Week 1 numbers exactly (epoch 19 and SROCC 0.9681 here, epoch 35 and SROCC 0.9711 in Week 1). The cause was not identified. The notebook run is used as the baseline for all Week 2 comparisons.
-- Single run, one seed, one random split with no patient IDs, so there is no variance estimate. B3 (5-fold cross-validation) was not run.
-- To reproduce, run the cells of the notebook in order on a GPU runtime. Result tables are in `assets/b1_table.csv` and `assets/b2_table.csv`.
+- B1 and B2 are single runs with one seed and one random split with no patient IDs, so they carry no variance estimate. B3 shows the fold-to-fold variation for the MSE baseline, still without patient-level separation.
+- To reproduce, run the cells of `ldct_iqac_week2_optionB.ipynb` (B1 and B2) and `ldct_iqac_week2_optionB3_cv.ipynb` (B3) in order on a GPU runtime. Result tables are in `assets/b1_table.csv` and `assets/b2_table.csv`.
 
 ## Project Structure
 
@@ -166,6 +181,7 @@ The ranking loss only constrains the order of the predictions, not their scale, 
 ├── plot_curves.py
 ├── utils.py
 ├── ldct_iqac_week2_optionB.ipynb
+├── ldct_iqac_week2_optionB3_cv.ipynb
 ├── assets/
 └── tests/
 ```
