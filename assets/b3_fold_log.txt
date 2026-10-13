@@ -1,0 +1,30 @@
+[fold 0] Epoch 10/50 | train 0.0554 | val 0.0682 | val SROCC 0.9693
+[fold 0] Epoch 20/50 | train 0.0482 | val 0.0704 | val SROCC 0.9723
+[fold 0] Epoch 30/50 | train 0.0186 | val 0.0638 | val SROCC 0.9770
+[fold 0] Epoch 40/50 | train 0.0105 | val 0.0617 | val SROCC 0.9766
+[fold 0] Epoch 50/50 | train 0.0118 | val 0.0615 | val SROCC 0.9750
+[fold 0] metrics: {'N': 200, 'MAE': 0.19845519959926605, 'RMSE': 0.24800141155719757, 'PLCC': 0.9752349257469177, 'SROCC': 0.9750340473828015, 'KROCC': 0.8825475970027202}
+[fold 1] Epoch 10/50 | train 0.0530 | val 0.0698 | val SROCC 0.9754
+[fold 1] Epoch 20/50 | train 0.0279 | val 0.0471 | val SROCC 0.9805
+[fold 1] Epoch 30/50 | train 0.0199 | val 0.0628 | val SROCC 0.9796
+[fold 1] Epoch 40/50 | train 0.0129 | val 0.0627 | val SROCC 0.9793
+[fold 1] Epoch 50/50 | train 0.0111 | val 0.0480 | val SROCC 0.9813
+[fold 1] metrics: {'N': 200, 'MAE': 0.16979598999023438, 'RMSE': 0.2191161811351776, 'PLCC': 0.9809508323669434, 'SROCC': 0.9812723332528961, 'KROCC': 0.898537866603634}
+[fold 2] Epoch 10/50 | train 0.0275 | val 0.0593 | val SROCC 0.9720
+[fold 2] Epoch 20/50 | train 0.0228 | val 0.0571 | val SROCC 0.9730
+[fold 2] Epoch 30/50 | train 0.0156 | val 0.0907 | val SROCC 0.9713
+[fold 2] Epoch 40/50 | train 0.0119 | val 0.0593 | val SROCC 0.9695
+[fold 2] Epoch 50/50 | train 0.0097 | val 0.0564 | val SROCC 0.9690
+[fold 2] metrics: {'N': 200, 'MAE': 0.1836870163679123, 'RMSE': 0.23746691644191742, 'PLCC': 0.9747097492218018, 'SROCC': 0.969013997791249, 'KROCC': 0.8737903816395388}
+[fold 3] Epoch 10/50 | train 0.0564 | val 0.0966 | val SROCC 0.9732
+[fold 3] Epoch 20/50 | train 0.0251 | val 0.0790 | val SROCC 0.9735
+[fold 3] Epoch 30/50 | train 0.0164 | val 0.0648 | val SROCC 0.9746
+[fold 3] Epoch 40/50 | train 0.0160 | val 0.0700 | val SROCC 0.9735
+[fold 3] Epoch 50/50 | train 0.0139 | val 0.0631 | val SROCC 0.9752
+[fold 3] metrics: {'N': 200, 'MAE': 0.1958586573600769, 'RMSE': 0.25125622749328613, 'PLCC': 0.9753568172454834, 'SROCC': 0.975204529926504, 'KROCC': 0.8822529474884647}
+[fold 4] Epoch 10/50 | train 0.0716 | val 0.0546 | val SROCC 0.9726
+[fold 4] Epoch 20/50 | train 0.0291 | val 0.0455 | val SROCC 0.9767
+[fold 4] Epoch 30/50 | train 0.0124 | val 0.0524 | val SROCC 0.9750
+[fold 4] Epoch 40/50 | train 0.0112 | val 0.0619 | val SROCC 0.9765
+[fold 4] Epoch 50/50 | train 0.0066 | val 0.0510 | val SROCC 0.9751
+[fold 4] metrics: {'N': 200, 'MAE': 0.17049728333950043, 'RMSE': 0.22572320699691772, 'PLCC': 0.9777551889419556, 'SROCC': 0.9751465002421468, 'KROCC': 0.8894945654820992}
